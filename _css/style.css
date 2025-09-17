@@ -57,16 +57,24 @@
         bottom: 0;
     }
 
-    25% {
+    40% {
         bottom: 180px;
     }
 
     50% {
-        bottom: 120px;
+        bottom: 180px;
     }
 
-    75% {
-        bottom: 10px;
+    70% {
+        bottom: 130px;
+    }
+
+    80% {
+        bottom: 75px;
+    }
+
+    90% {
+        bottom: 40px;
     }
 
     100% {
@@ -253,7 +261,7 @@
     background-color: #e42929;
     color: white;
     cursor: pointer;
-     transition: background-color 0.3s, transform 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .start-button:hover {
@@ -272,7 +280,7 @@
     color: white;
     outline: none;
     cursor: pointer;
-     transition: background-color 0.3s, transform 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .character-select:hover {
