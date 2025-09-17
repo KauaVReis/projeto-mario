@@ -1,6 +1,7 @@
 //Principais
 const mario = document.querySelector(".mario");
 const pipe = document.querySelector(".pipe");
+const cenario = document.querySelector(".chaos");
 
 //Corações
 const heart1 = document.querySelector(".heart");
@@ -55,13 +56,13 @@ var toca2 = true;
 
 //Já tinha antes
 const jump = () => {
+    if (!mario.classList.contains('jump')) {
+    
     mario.classList.add("jump");
     setTimeout(() => {
         mario.classList.remove("jump");
     }, 700);
-
-
-
+    }
 }
 
 //Nahyron fez, funções para o sonic virar bolinha quando segurar a seta pra baixo e voltar ao normal quando soltar

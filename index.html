@@ -28,26 +28,18 @@
         <!-- John -->
         <div class="tela_inicio">
             <img src="_imagens/senai.png" width="500px" height="400px" class="logo_senai"><br>
-            <button onclick="iniciarGame()" class="start-button">Start Game</button>
-            <select id="character-select" onchange="mudarPersonagem()" class="character-select">
-                <option value="">Personagens</option>
-                <option value="mario">Mario</option>
-                <option value="sonic">Sonic</option>
-                <option value="pikachu">Pikachu</option>
-                <option value="kirby">Kirby</option>
-                <option value="SwordSkeleton">Esqueleto</option>
-                <option value="Batman">Batman</option>
-                <option value="Luffy">Monkey D. Luffy</option>
-                <option value="Link">Link</option>
-                <option value="marioSecreto" style="display:none;">Mario Secreto</option>
-                <option value="sonicSecreto" style="display:none;">Sonic Secreto</option>
-                <option value="marioKart" style="display:none;">Mario Kart Secreto</option>
-                <option value="shadowSecreto" style="display:none;">Shadow Secreto</option>
-            </select>
+            <button onclick="iniciarGame()" class="start-button">Start Game</button><br>
+            
+            <button onclick="personagens()" class="start-button">Personagens</button><br>
+            
+            <button onclick="creditos()" class="start-button">Créditos</button><br>
+            
+            <button onclick="pagjogo()" class="start-button">Página oficial do Jogo</button><br>
 
             <!-- Matheus -->
-            <div class="personagem">
-                <img src="_media/gifs-startscreen/marioDancando.gif" id="personagem-sel" class="personagem-sel">
+            
+            <div class="chao">
+                <img src="_imagens/cenario.PNG">
             </div>
         </div>
         <div class="div-continuar">
@@ -84,6 +76,8 @@
             <img src="_imagens/stars2.png" class="stars">
         </div>
     </div>
+
+
     
     <!-- Nao sei quem colocou XD -->
     <audio id="musicaSelecao" loop></audio>
