@@ -66,13 +66,13 @@ const jump = () => {
 
 //Nahyron fez, funções para o sonic virar bolinha quando segurar a seta pra baixo e voltar ao normal quando soltar
 function spin() {
-    mario.src = "/_media/gifs-principais/sonic-spinning.gif";
+    mario.src = "_media/gifs-principais/sonic-spinning.gif";
 
     musica.removeAttribute('loop');
 }
 //Nahyron função para o sonic voltar ao normal
 function normal() {
-    mario.src = "/_media/gifs-principais/sonic.gif"
+    mario.src = "_media/gifs-principais/sonic.gif"
 }
 
 //Acho q foi o John
@@ -134,18 +134,18 @@ function mudarPersonagem() {
 
     switch (selecao) {
         case "mario":
-            mario.src = "/_media/gifs-principais/mario.gif";
-            personagemSelecionado.src = "/_media/gifs-startscreen/marioDancando.gif";
-            musica.src = "/_media/sounds/its_mario.mp3";
+            mario.src = "_media/gifs-principais/mario.gif";
+            personagemSelecionado.src = "_media/gifs-startscreen/marioDancando.gif";
+            musica.src = "_media/sounds/its_mario.mp3";
             musica.removeAttribute('loop');
             ;
             break;
         case "sonic":
 
-            mario.src = "/_media/gifs-principais/sonic.gif";
-            personagemSelecionado.src = "/_media/gifs-startscreen/sonic_dance.gif";
+            mario.src = "_media/gifs-principais/sonic.gif";
+            personagemSelecionado.src = "_media/gifs-startscreen/sonic_dance.gif";
             mario.style.bottom = "-4px";
-            musica.src = "/_media/sounds/sonicSelection.mp3";
+            musica.src = "_media/sounds/sonicSelection.mp3";
             musica.removeAttribute('loop');
 
 
@@ -179,27 +179,27 @@ function mudarPersonagem() {
             break;
 
         case "marioSecreto":
-            mario.src = "/_media/gifs-principais/mario-walking.gif";
-            personagemSelecionado.src = "/_media/gifs-principais/mario-walking.gif";
-            musica.src = "/_media/sounds/mario.mp3";
+            mario.src = "_media/gifs-principais/mario-walking.gif";
+            personagemSelecionado.src = "_media/gifs-principais/mario-walking.gif";
+            musica.src = "_media/sounds/mario.mp3";
             musica.removeAttribute('loop');
             break;
         case "sonicSecreto":
-            mario.src = "/_media/gifs-principais/super-sonic.gif";
-            personagemSelecionado.src = "/_media/gifs-principais/super-sonic.gif";
-            musica.src = "/_media/sounds/sonic-theme.mp3";
+            mario.src = "_media/gifs-principais/super-sonic.gif";
+            personagemSelecionado.src = "_media/gifs-principais/super-sonic.gif";
+            musica.src = "_media/sounds/sonic-theme.mp3";
             musica.removeAttribute('loop');
             break;
         case "marioKart":
-            mario.src = "/_media/gifs-principais/super-mario-kart-mario.gif";
-            personagemSelecionado.src = "/_media/gifs-principais/super-mario-kart-mario.gif";
-            musica.src = "/_media/sounds/mario.mp3";
+            mario.src = "_media/gifs-principais/super-mario-kart-mario.gif";
+            personagemSelecionado.src = "_media/gifs-principais/super-mario-kart-mario.gif";
+            musica.src = "_media/sounds/mario.mp3";
             musica.removeAttribute('loop');
             break;
         case "shadowSecreto":
-            mario.src = "/_media/gifs-principais/shadow-the-hedgehog.gif";
-            personagemSelecionado.src = "/_media/gifs-principais/shadow-the-hedgehog.gif";
-            musica.src = "/_media/sounds/sonic-theme.mp3";
+            mario.src = "_media/gifs-principais/shadow-the-hedgehog.gif";
+            personagemSelecionado.src = "_media/gifs-principais/shadow-the-hedgehog.gif";
+            musica.src = "_media/sounds/sonic-theme.mp3";
             musica.removeAttribute('loop');
             // Inverte o gif para o lado direito
             mario.style.transform = "scaleX(-1)";
@@ -207,40 +207,40 @@ function mudarPersonagem() {
             mario.style.bottom = "-15px";
             break;
         case "pikachu":
-            mario.src = "/_media/gifs-principais/Pikachu.gif";
-            personagemSelecionado.src = "/_media/gifs-startscreen/pikachu_parado.gif";
-            musica.src = "/_media/sounds/quePokemon.mp3";
+            mario.src = "_media/gifs-principais/Pikachu.gif";
+            personagemSelecionado.src = "_media/gifs-startscreen/pikachu_parado.gif";
+            musica.src = "_media/sounds/quePokemon.mp3";
             musica.removeAttribute('loop');
             mario.style.marginLeft = "5px";
             break;
         case "kirby":
-            mario.src = "/_media/gifs-principais/kirby.gif";
-            personagemSelecionado.src = "/_media/gifs-startscreen/kirby-nintendo.gif";
-            musica.src = "/_media/sounds/kirby_hi.mp3";
+            mario.src = "_media/gifs-principais/kirby.gif";
+            personagemSelecionado.src = "_media/gifs-startscreen/kirby-nintendo.gif";
+            musica.src = "_media/sounds/kirby_hi.mp3";
             musica.removeAttribute('loop');
             mario.style.width = "110px";
             // quando clicar na foto da kirby, ela vai rir
             personagemSelecionado.addEventListener("click", (event) => {
-                musica.src = "/_media/sounds/Kirby_laught.mp3";
+                musica.src = "_media/sounds/Kirby_laught.mp3";
             })
             break;
         case "SwordSkeleton":
-            mario.src = "/_media/gifs-principais/skeleton.gif";
-            personagemSelecionado.src = "/_media/gifs-startscreen/skeleton_Dancing.gif";
-            musica.src = "/_media/sounds/esqueleto-start.mp3";
+            mario.src = "_media/gifs-principais/skeleton.gif";
+            personagemSelecionado.src = "_media/gifs-startscreen/skeleton_Dancing.gif";
+            musica.src = "_media/sounds/esqueleto-start.mp3";
             musica.removeAttribute('loop');
             break;
         case "Batman":
-            mario.src = "/_media/gifs-principais/batman.gif";
-            personagemSelecionado.src = "/_media/gifs-startscreen/batman_Dance.gif";
-            musica.src = "/_media/sounds/sou_batman.mp3";
+            mario.src = "_media/gifs-principais/batman.gif";
+            personagemSelecionado.src = "_media/gifs-startscreen/batman_Dance.gif";
+            musica.src = "_media/sounds/sou_batman.mp3";
             mario.style.bottom = "-2px";
             musica.removeAttribute('loop');
             break;
         case "Luffy":
-            mario.src = "/_media/gifs-principais/luffy.gif";
-            personagemSelecionado.src = "/_media/gifs-startscreen/luffy_walk.gif";
-            musica.src = "/_media/sounds/luffy-rei.mp3";
+            mario.src = "_media/gifs-principais/luffy.gif";
+            personagemSelecionado.src = "_media/gifs-startscreen/luffy_walk.gif";
+            musica.src = "_media/sounds/luffy-rei.mp3";
             musica.removeAttribute('loop');
             mario.style.width = "115px";
             mario.style.marginLeft = "6px";
@@ -248,10 +248,10 @@ function mudarPersonagem() {
 
             break;
         case "Link":
-            mario.src = "/_media/gifs-principais/link.gif";
+            mario.src = "_media/gifs-principais/link.gif";
             mario.style.bottom = "-13px";
-            personagemSelecionado.src = "/_media/gifs-startscreen/link_Dance.gif";
-            musica.src = "/_media/sounds/link-tema.mp3";
+            personagemSelecionado.src = "_media/gifs-startscreen/link_Dance.gif";
+            musica.src = "_media/sounds/link-tema.mp3";
             mario.style.width = "135px";
             mario.style.marginLeft = "8px";
             musica.removeAttribute('loop');
@@ -259,8 +259,8 @@ function mudarPersonagem() {
         default:
             mario.style.transform = ""; // Remove inversão se trocar de personagem
             personagemSelecionado.style.transform = "";
-            mario.src = "/_media/gifs-principais/mario.gif";
-            personagemSelecionado.src = "/_media/gifs-startscreen/marioDancando.gif";
+            mario.src = "_media/gifs-principais/mario.gif";
+            personagemSelecionado.src = "_media/gifs-startscreen/marioDancando.gif";
             break;
     }
 }
@@ -285,7 +285,7 @@ function tiraVida() {
         lifes--;
         heart2.style.display = "none";
     } else if (lifes == 1) {
-        musica.src = '/_media/sounds/marioDeath.mp3';
+        musica.src = '_media/sounds/marioDeath.mp3';
         musica.removeAttribute('loop'); //remove o loop do som morrendo
         lifes--;
         heart1.style.display = "none";
@@ -310,61 +310,61 @@ function tiraVida() {
         //João Pedro fez, Parafal só adicionou mais
         //Nahyron e rafael arrumaram os personagens em relação ao tamanho e a posição no chão na tela de morte
         if (mario.src.match("_media/gifs-principais/Pikachu.gif")) {
-            mario.src = "/_imagens/deaths/pikachu_death.png";
+            mario.src = "_imagens/deaths/pikachu_death.png";
             musica.src = "_media/sounds/retired_Sound_pikachu.mp3";
             mario.style.width = "180px";
             mario.style.marginLeft = "50px";
             mario.style.bottom = "-10px";
         } else if (mario.src.match("_media/gifs-principais/sonic.gif")) {
-            mario.src = "/_imagens/deaths/sonic_death.png";
+            mario.src = "_imagens/deaths/sonic_death.png";
             musica.src = "_media/sounds/sonic_Death_sound.mp3";
             mario.style.width = "97px";
             mario.style.marginLeft = "50px";
             //Até a linha de cima era do Matheus sem os ajustes de tamanho
         } else if (mario.src.match("_media/gifs-principais/kirby.gif")) {
-            mario.src = "/_imagens/deaths/kirby-sleeping.gif";
+            mario.src = "_imagens/deaths/kirby-sleeping.gif";
             musica.src = "_media/sounds/kirby_Death.mp3";
             mario.style.width = "125px";
             mario.style.marginLeft = "50px";
             mario.style.bottom = "-14px";
         } else if (mario.src.match("_media/gifs-principais/skeleton.gif")) {
-            mario.src = "/_imagens/deaths/skeleton_Death.gif";
+            mario.src = "_imagens/deaths/skeleton_Death.gif";
             musica.src = "_media/sounds/skeleton_Death.mp3";
             mario.style.width = "85px";
             mario.style.marginLeft = "50px";
             mario.style.bottom = "-6px";
         } else if (mario.src.match("_media/gifs-principais/batman.gif")) {
-            mario.src = "/_imagens/deaths/batman_Death.gif";
+            mario.src = "_imagens/deaths/batman_Death.gif";
             musica.src = "_media/sounds/batman_Death.mp3";
             mario.style.width = "150px";
             mario.style.marginLeft = "15px";
             mario.style.bottom = "-13px";
         } else if (mario.src.match("_media/gifs-principais/luffy.gif") || mario.src.match("_media/gifs-principais/luffyGear.gif")) {
-            mario.src = "/_imagens/deaths/luffyDeath.png";
+            mario.src = "_imagens/deaths/luffyDeath.png";
             musica.src = "_media/sounds/luffy_Death.mp3";
             mario.style.width = "110px";
             mario.style.bottom = "-9px";
             mario.style.marginLeft = "50px";
         } else if (mario.src.match("_media/gifs-principais/link.gif")) {
-            mario.src = "/_imagens/deaths/link_Death.png";
+            mario.src = "_imagens/deaths/link_Death.png";
             musica.src = "_media/sounds/zelda_GameOver.mp3";
             mario.style.width = "110px";
             mario.style.marginLeft = "50px";
 
         } else if (mario.src.match("_media/gifs-principais/super-sonic.gif")) {
-            mario.src = "/_imagens/deaths/sonic_death.png";
+            mario.src = "_imagens/deaths/sonic_death.png";
             musica.src = "_media/sounds/sonic_Death_sound.mp3";
             mario.style.width = "110px";
             mario.style.marginLeft = "50px";
 
         } else if (mario.src.match("_media/gifs-principais/shadow-the-hedgehog.gif")) {
-            mario.src = "/_imagens/deaths/sonic_death.png";
+            mario.src = "_imagens/deaths/sonic_death.png";
             musica.src = "_media/sounds/sonic_Death_sound.mp3";
             mario.style.width = "110px";
             mario.style.marginLeft = "50px";
             mario.style.bottom = "0px";
         } else {
-            mario.src = "/_imagens/deaths/mario_death.png";
+            mario.src = "_imagens/deaths/mario_death.png";
             mario.style.marginLeft = "50px";
             mario.style.width = "80px";
         }
@@ -377,42 +377,42 @@ function iniciarGame() {
     //Nahyron
     // coloca a música da gameplay
     if (personagemAtual == "sonic") {
-        musica.src = "/_media/sounds/sonic-theme.mp3";
+        musica.src = "_media/sounds/sonic-theme.mp3";
     }
     if (personagemAtual == "sonicSecreto") {
-        musica.src = "/_media/sounds/sonic-theme.mp3";
+        musica.src = "_media/sounds/sonic-theme.mp3";
     }
     if (personagemAtual == "shadowSecreto") {
-        musica.src = "/_media/sounds/sonic-theme.mp3";
+        musica.src = "_media/sounds/sonic-theme.mp3";
     }
     if (personagemAtual == "Link") {
-        musica.src = "/_media/sounds/link-game.mp3";
+        musica.src = "_media/sounds/link-game.mp3";
     }
     if (personagemAtual == "Luffy") {
-        musica.src = "/_media/sounds/luffy-music.mp3";
+        musica.src = "_media/sounds/luffy-music.mp3";
     }
     if (personagemAtual == "Batman") {
-        musica.src = "/_media/sounds/batman_theme.mp3";
+        musica.src = "_media/sounds/batman_theme.mp3";
     }
     if (personagemAtual == "mario") {
-        musica.src = "/_media/sounds/mario.mp3";
+        musica.src = "_media/sounds/mario.mp3";
     }
     if (personagemAtual == "marioSecreto") {
-        musica.src = "/_media/sounds/mario.mp3";
+        musica.src = "_media/sounds/mario.mp3";
     }
     if (personagemAtual == "kirby") {
-        musica.src = "/_media/sounds/kirby-game.mp3";
+        musica.src = "_media/sounds/kirby-game.mp3";
     }
     if (personagemAtual == "pikachu") {
-        musica.src = "/_media/sounds/pikachu-game.mp3";
+        musica.src = "_media/sounds/pikachu-game.mp3";
     }
 
     //João adicionou
     if (personagemAtual == "marioKart") {
-        musica.src = "/_media/sounds/mario.mp3";
+        musica.src = "_media/sounds/mario.mp3";
     }
     if (personagemAtual == "SwordSkeleton") {
-        musica.src = "/_media/sounds/esqueleto-tema.mp3";
+        musica.src = "_media/sounds/esqueleto-tema.mp3";
     }
 
     //Sumo com a tela de Start, apareço com as informações (vida e pontos), o cano e o "mario"
@@ -470,8 +470,8 @@ function iniciarGame() {
             pontos >= 2500 && // Pontuação mínima atingida
             !mario.src.includes("luffyGear.gif")) // Ainda não está com o gif do Gear
         {
-            mario.src = "/_media/gifs-principais/luffyGear.gif"; // Troca para o gif do Luffy Gear
-            musica.src = "/_media/sounds/luffy-song-gear-five.mp3";
+            mario.src = "_media/gifs-principais/luffyGear.gif"; // Troca para o gif do Luffy Gear
+            musica.src = "_media/sounds/luffy-song-gear-five.mp3";
         }
 
         //Matheus e Nahyron, Parafal adicionou músicas e alterou as velocidades de acordo com a dificuldade
@@ -488,7 +488,7 @@ function iniciarGame() {
         }
         if (pontos >= 10000) {
             if (toca1 == true) {
-                musica.src = "/_media/sounds/hardDifficulty.mp3";
+                musica.src = "_media/sounds/hardDifficulty.mp3";
                 toca1 = false;
             }
             pipe.style.animationDuration = "0.58s";
@@ -510,7 +510,7 @@ function iniciarGame() {
         if (pontos >= 95050 && pontos <= 95650) {
             document.querySelector(".made-in-heaven").style.display = "flex";
             if (toca2 == true) {
-                musica.src = "/_media/sounds/madeinheaven.mp3";
+                musica.src = "_media/sounds/madeinheaven.mp3";
                 musica.removeAttribute("loop");
                 toca2 = false;
             }
