@@ -19,7 +19,7 @@
 <body>
     <!-- Parafil -->
     <audio autoplay loop repeat id="troca" src="_media/sounds/mario.mp3" type="audio/mp3"></audio>
-    
+
     <div class="game-board">
 
         <!-- Easter egg do Nahyron e Matheus -->
@@ -29,15 +29,15 @@
         <div class="tela_inicio">
             <img src="_imagens/senai.png" width="500px" height="400px" class="logo_senai"><br>
             <button onclick="iniciarGame()" class="start-button">Start Game</button><br>
-            
+
             <button onclick="personagens()" class="start-button">Personagens</button><br>
-            
+
             <button onclick="creditos()" class="start-button">Créditos</button><br>
-            
+
             <button onclick="pagjogo()" class="start-button">Página oficial do Jogo</button><br>
 
             <!-- Matheus -->
-            
+
             <div class="chao">
                 <img src="_imagens/cenario.PNG">
             </div>
@@ -49,7 +49,8 @@
         </div>
         <div class="info-board">
             <div class="scores">
-                <p id="pontos" style="color: white;">01</p>
+                <p id="pontos" style="color: black;">01</p>
+                <p id="pontoTexto" style="visibility: hidden;">+100</p>
             </div>
             <div class="lifes">
                 <img src="_media/corazon-pixel.gif" class="heart">
@@ -58,12 +59,8 @@
             </div>
         </div>
 
-        
-
-
-
         <img src="_imagens/clouds.png" class="clouds">
-        
+
         <!-- Matheus e John -->
         <img src="_media/dragonair.gif" class="dragonair">
         <img src="_media/dragon.gif" class="dragon">
@@ -83,31 +80,36 @@
         <!-- (Nahyron) Selção de personagens -->
 
         <div class="personagens-selec">
-            
-            <img src="_media/gifs-startscreen/kirby-nintendo.gif" class="kirby" >
-            <img src="_media/gifs-startscreen/link_Dance.gif" class="link" >
-            <img src="_media/gifs-startscreen/pikachu_parado.gif " class="pikachu" >
-            <img src="_media/gifs-startscreen/batman_Dance.gif" class="batman" >
-            <img src="_media/gifs-startscreen/luffy-inicio.gif" class="luffy" >
-            <img src="_media/gifs-startscreen/marioDancando.gif" class="marioDance" >
-            <img src="_media/gifs-startscreen/sonic_dance.gif" class="sonic" >
- 
+
+            <img src="_media/gifs-startscreen/kirby-nintendo.gif" class="kirby">
+            <img src="_media/gifs-startscreen/link_Dance.gif" class="link">
+            <img src="_media/gifs-startscreen/pikachu_parado.gif " class="pikachu">
+            <img src="_media/gifs-startscreen/batman_Dance.gif" class="batman">
+            <img src="_media/gifs-startscreen/luffy-inicio.gif" class="luffy">
+            <img src="_media/gifs-startscreen/marioDancando.gif" class="marioDance">
+            <img src="_media/gifs-startscreen/sonic_dance.gif" class="sonic">
+
         </div>
 
+        <div class="creditos-area">
+
+            <img src="_imagens/creditos/pentagon.jpg" width="20%">
+            <img src="_imagens/creditos/passione.jpg" width="20%">
+            <img src="_imagens/creditos/hexadev.jpg" width="25%">
+            <img src="_imagens/creditos/g2.jpg" width="20%">
+
+        </div>
 
         <div class="btn-voltar">
-        <button onclick="window.location.reload()" class="recarga">Voltar para menu</button>
-      </div>
-
-
+            <button class="recarga" onclick="retornar()">Voltar para menu</button>
+        </div>
 
     </div>
 
-
-    
     <!-- Nao sei quem colocou XD -->
     <audio id="musicaSelecao" loop></audio>
     <audio id="musicaJogo" loop></audio>
+    <audio id="moeda" src="_media/sounds/pegar-moeda.mp3"></audio>
 
 
 </body>

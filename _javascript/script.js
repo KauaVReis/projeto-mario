@@ -21,6 +21,8 @@ const gameBoard = document.querySelector(".game-board");
 const infoBoard = document.querySelector(".info-board");
 const pretin = document.querySelector(".pretin");
 const goku_golpes = document.querySelector(".goku_golpes");
+const selecao = document.querySelector(".personagens-selec");
+const creditos_tela = document.querySelector(".creditos-area");
 
 //:D
 // musica  
@@ -28,6 +30,7 @@ const musica = document.getElementById('troca');
 //Musica de seleção Nahyron
 const musicaSelecao = document.getElementById("musicaSelecao");
 const musicaJogo = document.getElementById("musicaJogo");
+const moedaPega = document.getElementById("moeda");
 //(Nahyron) coloquei essa variavel para controlar o personagem atual e eu poder usar depois :)
 let personagemAtual = "";
 
@@ -54,11 +57,11 @@ var toca2 = true;
 //Já tinha antes
 const jump = () => {
     if (!mario.classList.contains('jump')) {
-    
-    mario.classList.add("jump");
-    setTimeout(() => {
-        mario.classList.remove("jump");
-    }, 700);
+
+        mario.classList.add("jump");
+        setTimeout(() => {
+            mario.classList.remove("jump");
+        }, 700);
     }
 }
 
@@ -124,18 +127,36 @@ document.addEventListener('keydown', function (e) {
 //Função é executada quando o user clicar em "Selecionar Personagem" na tela de Start
 //Some com a tela de Start e exibe a tela de seleção de personagens
 function personagens() {
-    let selecao = document.querySelector(".personagens-selec");
-    
+
     selecao.style.display = "flex";
-    
-    telaIncio.style.display = "none";
+    telaIncio.style.visibility = "hidden";
     document.querySelector(".recarga").style.display = "flex";
-    
-    
-    
-    
-    
-    
+}
+
+// Miguel
+// Função executa uma area de creditos
+function creditos() {
+    creditos_tela.style.display = "flex";
+    telaIncio.style.visibility = "hidden";
+    document.querySelector(".recarga").style.display = "flex";
+}
+
+// Miguel
+// Retorna ao menu principal do jogo
+function retornar() {
+
+    if (selecao.style.display == "flex") {
+        selecao.style.display = "none";
+        telaIncio.style.visibility = "visible";
+        document.querySelector(".recarga").style.display = "none";
+    }
+
+    else {
+        creditos_tela.style.display = "none";
+        telaIncio.style.visibility = "visible";
+        document.querySelector(".recarga").style.display = "none";
+    }
+
 }
 
 
@@ -158,7 +179,7 @@ function mudarPersonagem() {
             personagemSelecionado.src = "_media/gifs-startscreen/marioDancando.gif";
             musica.src = "_media/sounds/its_mario.mp3";
             musica.removeAttribute('loop');
-            ;
+
             break;
         case "sonic":
 
@@ -465,18 +486,24 @@ function iniciarGame() {
             const coinPosition = coin.offsetLeft;
             const marioPosition = +window.getComputedStyle(mario).bottom.replace("px", "");
             if (coinPosition <= 120 && coinPosition > 0 && marioPosition >= 120 && !coinCollected) {
-                pontos += 500;
+                pontos += 100;
                 //Parafal e Nahyron
                 coin.style.display = "none";
+                pontoTexto.style.visibility = 'visible';
+                pontoTexto.style.animation = 'texto-moeda 2.15s infinite linear';
+                moedaPega.play();
                 coinCollected = true;
                 setTimeout(() => {
                     coin.style.display = "block";
                     coinCollected = false;
+                    pontoTexto.style.visibility = 'hidden';
+                    pontoTexto.style.animation = 'none';
                 }, 2000); // 2 segundos para reaparecer
             }
         }
     }, 100);
 
+    //Essa parte no geral já tinha mas é outro monstro, todo mundo mexeu um pouco
     //Essa parte no geral já tinha mas é outro monstro, todo mundo mexeu um pouco
     const loop = setInterval(() => {
         const pipePosition = pipe.offsetLeft;
@@ -487,39 +514,42 @@ function iniciarGame() {
 
         if (
             mario.src.includes("luffy.gif") && // Está usando o gif do Luffy normal
-            pontos >= 2500 && // Pontuação mínima atingida
+            pontos >= 400 && // Pontuação mínima atingida
             !mario.src.includes("luffyGear.gif")) // Ainda não está com o gif do Gear
         {
             mario.src = "_media/gifs-principais/luffyGear.gif"; // Troca para o gif do Luffy Gear
             musica.src = "_media/sounds/luffy-song-gear-five.mp3";
+            mario.style.width = '200px';
         }
 
         //Matheus e Nahyron, Parafal adicionou músicas e alterou as velocidades de acordo com a dificuldade
         //Dificuldade baseada na qntd de pontos, deixando a animação do pipe mais rápida
         //Também muda o fundo e adiciona alguns pequenos detalhes
-        if (pontos == 1500) {
-            pipe.style.animationDuration = "0.88s";
+        if (pontos >= 350) {
+            pipe.style.animationDuration = "1.08s";
         }
-        if (pontos >= 5000) {
-            pipe.style.animationDuration = "0.78s";
+        if (pontos >= 500) {
+            pipe.style.animationDuration = "0.98s";
             gameBoard.style.backgroundImage = "linear-gradient(#ffcc70, #ff7eb3)";
             goku.style.display = "flex";
             goku_golpes.style.display = "none";
         }
-        if (pontos >= 10000) {
+        if (pontos >= 650) {
             if (toca1 == true) {
                 musica.src = "_media/sounds/hardDifficulty.mp3";
                 toca1 = false;
             }
-            pipe.style.animationDuration = "0.58s";
+            pipe.style.animationDuration = "0.78s";
             gameBoard.style.backgroundImage = "linear-gradient(#141e30, #243b55)";
+            document.getElementById("pontos").style.color = 'white';
+            pontoTexto.style.color = 'white';
             estrelas.style.display = "flex";
             dragon.style.display = "flex";
             pretin.style.display = "flex";
             goku.style.display = "none";
             dragonair.style.display = "none";
         }
-        if (pontos >= 95000) {
+        if (pontos >= 1000) {
             document.querySelector(".clouds").style.animationDuration = "0.2s";
             estrelas.style.animationDuration = "0.1s";
             lifes = 100000000000000;
@@ -527,7 +557,7 @@ function iniciarGame() {
             coin.style.animationDuration = "0.1s";
             coin.style.display = "none";
         }
-        if (pontos >= 95050 && pontos <= 95650) {
+        if (pontos >= 1050 && pontos <= 1500) {
             document.querySelector(".made-in-heaven").style.display = "flex";
             if (toca2 == true) {
                 musica.src = "_media/sounds/madeinheaven.mp3";
@@ -538,7 +568,7 @@ function iniciarGame() {
             pipe.style.display = "none";
             mario.style.display = "none";
             gameBoard.style.borderBottom = "none";
-            if (pontos >= 95700 || pontos >= 95145) {
+            if (pontos >= 1060 || pontos >= 95145) {
                 window.location.reload(true);
             }
         }
@@ -572,11 +602,11 @@ function iniciarGame() {
             default:
                 break;
         }
-
     });
 
     //Não faço ideia de quem digitou essa parte
     musica.loop = true;
+    musica.volume = 0.5;
     musica.play();
 
 }
