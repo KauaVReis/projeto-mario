@@ -15,9 +15,6 @@ const dragon = document.querySelector(".dragon");
 const dragonair = document.querySelector(".dragonair");
 
 
-// nao meche aqui jao, to vendo aqui ainda
-const skeletonHead = document.querySelector(".skeletonHead")
-
 const telaMorte = document.querySelector(".div-continuar");
 const telaIncio = document.querySelector(".tela_inicio");
 const gameBoard = document.querySelector(".game-board");
@@ -26,12 +23,12 @@ const pretin = document.querySelector(".pretin");
 const goku_golpes = document.querySelector(".goku_golpes");
 
 //:D
-//Musica Parafal
+// musica  
 const musica = document.getElementById('troca');
 //Musica de seleção Nahyron
 const musicaSelecao = document.getElementById("musicaSelecao");
 const musicaJogo = document.getElementById("musicaJogo");
-//Nahyron coloquei essa variavel para controlar o personagem atual e eu poder usar depois :)
+//(Nahyron) coloquei essa variavel para controlar o personagem atual e eu poder usar depois :)
 let personagemAtual = "";
 
 let segundos = 0;
@@ -126,6 +123,24 @@ document.addEventListener('keydown', function (e) {
 //Só pra me poupar esforços, o nahyron que removeu o loop e mudou a musica nas condicionais de cada personagem 
 //Conforme vai sendo alterado o valor no select vai executando está função
 //Muda o personagem exibido na tela de Start e dentro do jogo já que define o src da classe mario com o Gif do personagem escolhido
+
+function personagens() {
+let selecao = document.querySelector(".personagens-selec");
+
+selecao.style.display = "flex";
+
+ telaIncio.style.display = "none";s
+
+
+
+
+
+
+}
+
+
+
+
 function mudarPersonagem() {
     let selecao = document.getElementById("character-select").value;
     let personagemSelecionado = document.getElementById("personagem-sel");
