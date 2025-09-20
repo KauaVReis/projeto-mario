@@ -317,29 +317,34 @@
     justify-content: center;
 }
 
+
+/* Nahyron fez aqui */
+
 .chao{
     position: fixed;
     bottom: 0px;
 }
 
 
-
 .personagens-selec {
     display: none;
-    border: 10px solid black;
-    background-color: gray;
-    background-color: rgba(100, 100, 100, 0.5);
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
     width: 55%;
     height: 60%;
     position: absolute;
-    top: 20%;
+    top: 8%;
     left: 24%;
     z-index: 10;
+    background-color: rgba(100, 100, 100, 0.5);
+    border: 10px solid black;
    
 }
 
 .personagens-selec img {
-    width: 400px;
+    width: 200px;
     height: 150px;
     margin: 20px;
     cursor: pointer;
@@ -350,21 +355,23 @@
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
-     
+ 
 }
 
-.sec2{
-    width: 400px;
-}
+
 
 .luffy:hover{
-    border: 5px solid red;
+    border: 5px solid white;
     transition: 0.3s;
    
 }
 
 
-
+.marioDance:hover{
+    border: 5px solid red;
+    transition: 0.3s;
+   
+}
 
 .link:hover{
     border: 5px solid green;
@@ -381,7 +388,40 @@
     transition: 0.3s;
 }
 
+.sonic:hover{
+    border: 5px solid blue;
+    transition: 0.3s;
+}
 
+.recarga {
+    display: none;
+    padding: 10px 20px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #e42929;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+   
+}
 
+.recarga:hover {
+    background-color: #e90e0e;
+    transform: scale(1.05);
+    transition: 0.3s;
+    color: white;
+}
+
+.btn-voltar{
+    display: flex;
+    position: absolute;
+    bottom: 15%;
+    left: 43%;
+    z-index: 10;
+}
+
+/* e parei aqui */
 
 

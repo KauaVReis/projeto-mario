@@ -119,26 +119,30 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
+
+// Nahyron fez
+//Função é executada quando o user clicar em "Selecionar Personagem" na tela de Start
+//Some com a tela de Start e exibe a tela de seleção de personagens
+function personagens() {
+    let selecao = document.querySelector(".personagens-selec");
+    
+    selecao.style.display = "flex";
+    
+    telaIncio.style.display = "none";
+    document.querySelector(".recarga").style.display = "flex";
+    
+    
+    
+    
+    
+    
+}
+
+
 //John fez, Parafal e Nahyron fizeram algumas alteções e adições
 //Só pra me poupar esforços, o nahyron que removeu o loop e mudou a musica nas condicionais de cada personagem 
 //Conforme vai sendo alterado o valor no select vai executando está função
 //Muda o personagem exibido na tela de Start e dentro do jogo já que define o src da classe mario com o Gif do personagem escolhido
-
-function personagens() {
-let selecao = document.querySelector(".personagens-selec");
-
-selecao.style.display = "flex";
-
- telaIncio.style.display = "none";s
-
-
-
-
-
-
-}
-
-
 
 
 function mudarPersonagem() {
