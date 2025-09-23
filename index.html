@@ -6,37 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crossverse</title>
     <link rel="stylesheet" href="_css/style.css">
-
-    <!-- Favicon -->
     <link rel="shortcut icon" href="_imagens/logo.jpeg" type="image/x-icon">
-
-    <!-- Fonte -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <!-- Parafil -->
     <audio autoplay loop repeat id="troca" src="_media/sounds/mario.mp3" type="audio/mp3"></audio>
 
     <div class="game-board">
-
-        <!-- Easter egg do Nahyron e Matheus -->
         <img src="_media/pucci.gif" class="made-in-heaven">
 
-        <!-- John -->
         <div class="tela_inicio">
-            <img src="_imagens/senai.png" width="500px" height="400px" class="logo_senai"><br>
-            <button onclick="iniciarGame()" class="start-button">Start Game</button><br>
+            <img src="_imagens/logoSenai.png" alt="logoSenai" width="350px" class="logo-senai"><br>
 
-            <button onclick="personagens()" class="start-button">Personagens</button><br>
-
-            <button onclick="creditos()" class="start-button">Créditos</button><br>
-
-            <button onclick="pagjogo()" class="start-button">Página oficial do Jogo</button><br>
-
-            <!-- Matheus -->
+            <div class="menu-buttons">
+                <button onclick="iniciarGame()" class="start-button">Start Game</button>
+                <button onclick="personagens()" class="start-button">Personagens</button>
+                <button onclick="creditos()" class="start-button">Créditos</button>
+                <button onclick="pagjogo()" class="start-button">Página oficial do Jogo</button>
+            </div>
 
             <div class="chao">
                 <img src="_imagens/cenario.PNG">
@@ -50,18 +40,14 @@
         <div class="info-board">
             <div class="scores">
                 <p id="pontos" style="color: black;">01</p>
-                <p id="pontoTexto" style="visibility: hidden;">+100</p>
+                <p id="pontoTexto" style="visibility: hidden;">+25</p>
             </div>
             <div class="lifes">
-                <img src="_media/corazon-pixel.gif" class="heart">
-                <img src="_media/corazon-pixel.gif" class="heart1">
-                <img src="_media/corazon-pixel.gif" class="heart2">
             </div>
         </div>
 
         <img src="_imagens/clouds.png" class="clouds">
 
-        <!-- Matheus e John -->
         <img src="_media/dragonair.gif" class="dragonair">
         <img src="_media/dragon.gif" class="dragon">
         <img src="_media/goku.gif" class="goku">
@@ -77,40 +63,51 @@
             <img src="_imagens/stars2.png" class="stars">
         </div>
 
-        <!-- (Nahyron) Selção de personagens -->
-
         <div class="personagens-selec">
+            <h2 class="section-title">Escolha seu Personagem</h2>
+            <div class="character-grid">
+                <img src="_media/gifs-startscreen/marioDancando.gif" class="marioDance" data-character="mario">
+                <img src="_media/gifs-startscreen/kirby-nintendo.gif" class="kirby" data-character="kirby">
+                <img src="_media/gifs-startscreen/link_Dance.gif" class="link" data-character="link">
+                <img src="_media/gifs-startscreen/pikachu_parado.gif" class="pikachu" data-character="pikachu">
+                <img src="_media/gifs-startscreen/batman_Dance.gif" class="batman" data-character="batman">
+                <img src="_media/gifs-startscreen/luffy-inicio.gif" class="luffy" data-character="luffy">
+                <img src="_media/gifs-startscreen/sonic_dance.gif" class="sonic" data-character="sonic">
 
-            <img src="_media/gifs-startscreen/kirby-nintendo.gif" class="kirby">
-            <img src="_media/gifs-startscreen/link_Dance.gif" class="link">
-            <img src="_media/gifs-startscreen/pikachu_parado.gif " class="pikachu">
-            <img src="_media/gifs-startscreen/batman_Dance.gif" class="batman">
-            <img src="_media/gifs-startscreen/luffy-inicio.gif" class="luffy">
-            <img src="_media/gifs-startscreen/marioDancando.gif" class="marioDance">
-            <img src="_media/gifs-startscreen/sonic_dance.gif" class="sonic">
+                <img src="_media/gifs-principais/mario-walking.gif" class="personagem-secreto"
+                    data-character="marioSecreto" id="marioSecreto-char">
+                <img src="_media/gifs-principais/super-sonic.gif" class="personagem-secreto"
+                    data-character="sonicSecreto" id="sonicSecreto-char">
+                <img src="_media/gifs-principais/super-mario-kart-mario.gif" class="personagem-secreto"
+                    data-character="marioKart" id="marioKart-char">
+                <img src="_media/gifs-principais/shadow-the-hedgehog.gif" class="personagem-secreto"
+                    data-character="shadowSecreto" id="shadowSecreto-char" style="transform: scaleX(-1);">
 
+                <img src="_media/wario.gif" class="personagem-secreto" data-character="wario" id="wario-char"
+                    style="transform: scaleX(-1);">
+                <img src="_imagens/image.png" class="personagem-secreto" data-character="roberto" id="roberto-char">
+                <img src="_imagens/matheus.png" class="personagem-secreto" data-character="matheus" id="matheus-char">
+            </div>
         </div>
 
         <div class="creditos-area">
-
-            <img src="_imagens/creditos/pentagon.jpg" width="20%">
-            <img src="_imagens/creditos/passione.jpg" width="20%">
-            <img src="_imagens/creditos/hexadev.jpg" width="25%">
-            <img src="_imagens/creditos/g2.jpg" width="20%">
-
+            <h2 class="section-title">Créditos</h2>
+            <div class="credits-grid">
+                <img src="_imagens/creditos/pentagon.jpg" width="20%">
+                <img src="_imagens/creditos/passione.jpg" width="20%">
+                <img src="_imagens/creditos/hexadev.jpg" width="25%">
+                <img src="_imagens/creditos/g2.jpg" width="20%">
+            </div>
         </div>
 
         <div class="btn-voltar">
             <button class="recarga" onclick="retornar()">Voltar para menu</button>
         </div>
-
     </div>
 
-    <!-- Nao sei quem colocou XD -->
     <audio id="musicaSelecao" loop></audio>
     <audio id="musicaJogo" loop></audio>
     <audio id="moeda" src="_media/sounds/pegar-moeda.mp3"></audio>
-
 
 </body>
 <script src="_javascript/script.js" defer></script>

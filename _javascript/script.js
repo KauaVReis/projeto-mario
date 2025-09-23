@@ -35,7 +35,7 @@ const moedaPega = document.getElementById("moeda");
 let personagemAtual = "";
 
 let segundos = 0;
-
+let moedasColetadas = 0;
 
 //Pontos e vidas ao inciar o jogo
 let pontos = 0;
@@ -76,52 +76,64 @@ function normal() {
     mario.src = "_media/gifs-principais/sonic.gif"
 }
 
-//Acho q foi o John
-const marioSeq = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown'];
-const sonicSeq = ['ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'];
-let marioInput = [];
-let sonicInput = [];
-const marioKartSeq = ['ArrowUp', 'ArrowRight', 'ArrowDown', 'ArrowLeft'];
-const shadowSeq = ['ArrowRight', 'ArrowRight'];
-let marioKartInput = [];
-let shadowInput = [];
+// const marioSeq = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown'];
+// const sonicSeq = ['ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'];
+// let marioInput = [];
+// let sonicInput = [];
+// const marioKartSeq = ['ArrowUp', 'ArrowRight', 'ArrowDown', 'ArrowLeft'];
+// const shadowSeq = ['ArrowRight', 'ArrowRight'];
+// let marioKartInput = [];
+// let shadowInput = [];
 
+// Objeto para rastrear a digitação de cada sequência de código
+let unlockInputs = {
+    marioSecreto: [],
+    sonicSecreto: [],
+    marioKart: [],
+    shadowSecreto: [],
+    wario: [],
+    roberto: [],
+    matheus: []
+};
+
+function checkUnlock(key) {
+    // Definição de todos os códigos e seus alvos no HTML
+    const sequences = {
+        marioSecreto: { seq: ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown'], id: 'marioSecreto-char' },
+        sonicSecreto: { seq: ['ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'], id: 'sonicSecreto-char' },
+        marioKart: { seq: ['ArrowUp', 'ArrowRight', 'ArrowDown', 'ArrowLeft'], id: 'marioKart-char' },
+        shadowSecreto: { seq: ['ArrowRight', 'ArrowRight'], id: 'shadowSecreto-char' },
+        wario: { seq: ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'], id: 'wario-char' },
+        roberto: { seq: ['r', 'o', 'b', 'e', 'r', 't', 'o'], id: 'roberto-char' },
+        matheus: { seq: ['p', 'a', 'l', 'm', 'e', 'i', 'r', 'a', 's'], id: 'matheus-char' }
+    };
+
+    for (const charName in sequences) {
+        const data = sequences[charName];
+        const currentInput = unlockInputs[charName];
+
+        currentInput.push(key);
+        if (currentInput.length > data.seq.length) {
+            currentInput.shift();
+        }
+
+        // Compara a sequência digitada com a sequência correta (ignorando maiúsculas/minúsculas)
+        if (currentInput.map(k => k.toLowerCase()).join('') === data.seq.map(k => k.toLowerCase()).join('')) {
+            const charElement = document.getElementById(data.id);
+            if (charElement && charElement.classList.contains('personagem-secreto')) {
+                charElement.style.display = 'inline-block';
+                charElement.classList.remove('personagem-secreto');
+                alert('Novo personagem desbloqueado!');
+                currentInput.length = 0; // Reseta a sequência para evitar re-desbloqueio
+            }
+        }
+    }
+}
+
+// Listener de Teclado Unificado
 document.addEventListener('keydown', function (e) {
-    // Mario secreto
-    marioInput.push(e.key);
-    if (marioInput.length > marioSeq.length) marioInput.shift();
-    if (marioInput.join('').toLowerCase() === marioSeq.join('').toLowerCase()) {
-        document.querySelector('option[value="marioSecreto"]').style.display = 'block';
-        alert('Skin secreta do Mario desbloqueada!');
-        marioInput = [];
-    }
-    // Sonic secreto
-    sonicInput.push(e.key);
-    if (sonicInput.length > sonicSeq.length) sonicInput.shift();
-    if (sonicInput.join('').toLowerCase() === sonicSeq.join('').toLowerCase()) {
-        document.querySelector('option[value="sonicSecreto"]').style.display = 'block';
-        alert('Skin secreta do Sonic desbloqueada!');
-        sonicInput = [];
-    }
-
-    // Mario Kart secreto
-    marioKartInput.push(e.key);
-    if (marioKartInput.length > marioKartSeq.length) marioKartInput.shift();
-    if (marioKartInput.join('').toLowerCase() === marioKartSeq.join('').toLowerCase()) {
-        document.querySelector('option[value="marioKart"]').style.display = 'block';
-        alert('Skin secreta do Mario Kart desbloqueada!');
-        marioKartInput = [];
-    }
-    // Shadow secreto
-    shadowInput.push(e.key);
-    if (shadowInput.length > shadowSeq.length) shadowInput.shift();
-    if (shadowInput.join('').toLowerCase() === shadowSeq.join('').toLowerCase()) {
-        document.querySelector('option[value="shadowSecreto"]').style.display = 'block';
-        alert('Skin secreta do Shadow desbloqueada!');
-        shadowInput = [];
-    }
+    checkUnlock(e.key);
 });
-
 
 // Nahyron fez
 //Função é executada quando o user clicar em "Selecionar Personagem" na tela de Start
@@ -166,166 +178,283 @@ function retornar() {
 //Muda o personagem exibido na tela de Start e dentro do jogo já que define o src da classe mario com o Gif do personagem escolhido
 
 
-function mudarPersonagem() {
-    let selecao = document.getElementById("character-select").value;
-    let personagemSelecionado = document.getElementById("personagem-sel");
+// function mudarPersonagem() {
+//     let selecao = document.getElementById("character-select").value;
+//     let personagemSelecionado = document.getElementById("personagem-sel");
 
+//     // salva o perso atual
+//     personagemAtual = selecao;
+
+//     switch (selecao) {
+//         case "mario":
+//             mario.src = "_media/gifs-principais/mario.gif";
+//             personagemSelecionado.src = "_media/gifs-startscreen/marioDancando.gif";
+//             musica.src = "_media/sounds/its_mario.mp3";
+//             musica.removeAttribute('loop');
+
+//             break;
+//         case "sonic":
+
+//             mario.src = "_media/gifs-principais/sonic.gif";
+//             personagemSelecionado.src = "_media/gifs-startscreen/sonic_dance.gif";
+//             mario.style.bottom = "-4px";
+//             musica.src = "_media/sounds/sonicSelection.mp3";
+//             musica.removeAttribute('loop');
+
+
+//             //Nahyron
+//             // condicional pra quando segurar a seta pra baixo, ele virar uma bolinha (sonic)
+
+//             document.addEventListener("keydown", (event) => {
+//                 switch (event.key) {
+//                     case "ArrowDown":
+//                         spin();
+//                         break;
+//                     default:
+//                         break;
+//                 }
+//             });
+
+//             // condicional pra quando soltar a seta pra baixo, ele virar uma bolinha (sonic)
+
+//             document.addEventListener("keyup", (event) => {
+//                 switch (event.key) {
+//                     case "ArrowDown":
+//                         normal();
+//                         break;
+//                     default:
+//                         break;
+//                 }
+//             });
+
+
+
+//             break;
+
+//         case "marioSecreto":
+//             mario.src = "_media/gifs-principais/mario-walking.gif";
+//             personagemSelecionado.src = "_media/gifs-principais/mario-walking.gif";
+//             musica.src = "_media/sounds/mario.mp3";
+//             musica.removeAttribute('loop');
+//             break;
+//         case "sonicSecreto":
+//             mario.src = "_media/gifs-principais/super-sonic.gif";
+//             personagemSelecionado.src = "_media/gifs-principais/super-sonic.gif";
+//             musica.src = "_media/sounds/sonic-theme.mp3";
+//             musica.removeAttribute('loop');
+//             break;
+//         case "marioKart":
+//             mario.src = "_media/gifs-principais/super-mario-kart-mario.gif";
+//             personagemSelecionado.src = "_media/gifs-principais/super-mario-kart-mario.gif";
+//             musica.src = "_media/sounds/mario.mp3";
+//             musica.removeAttribute('loop');
+//             break;
+//         case "shadowSecreto":
+//             mario.src = "_media/gifs-principais/shadow-the-hedgehog.gif";
+//             personagemSelecionado.src = "_media/gifs-principais/shadow-the-hedgehog.gif";
+//             musica.src = "_media/sounds/sonic-theme.mp3";
+//             musica.removeAttribute('loop');
+//             // Inverte o gif para o lado direito
+//             mario.style.transform = "scaleX(-1)";
+//             personagemSelecionado.style.transform = "scaleX(-1)";
+//             mario.style.bottom = "-15px";
+//             break;
+//         case "pikachu":
+//             mario.src = "_media/gifs-principais/Pikachu.gif";
+//             personagemSelecionado.src = "_media/gifs-startscreen/pikachu_parado.gif";
+//             musica.src = "_media/sounds/quePokemon.mp3";
+//             musica.removeAttribute('loop');
+//             mario.style.marginLeft = "5px";
+//             break;
+//         case "kirby":
+//             mario.src = "_media/gifs-principais/kirby.gif";
+//             personagemSelecionado.src = "_media/gifs-startscreen/kirby-nintendo.gif";
+//             musica.src = "_media/sounds/kirby_hi.mp3";
+//             musica.removeAttribute('loop');
+//             mario.style.width = "110px";
+//             // quando clicar na foto da kirby, ela vai rir
+//             personagemSelecionado.addEventListener("click", (event) => {
+//                 musica.src = "_media/sounds/Kirby_laught.mp3";
+//             })
+//             break;
+//         case "SwordSkeleton":
+//             mario.src = "_media/gifs-principais/skeleton.gif";
+//             personagemSelecionado.src = "_media/gifs-startscreen/skeleton_Dancing.gif";
+//             musica.src = "_media/sounds/esqueleto-start.mp3";
+//             musica.removeAttribute('loop');
+//             break;
+//         case "Batman":
+//             mario.src = "_media/gifs-principais/batman.gif";
+//             personagemSelecionado.src = "_media/gifs-startscreen/batman_Dance.gif";
+//             musica.src = "_media/sounds/sou_batman.mp3";
+//             mario.style.bottom = "-2px";
+//             musica.removeAttribute('loop');
+//             break;
+//         case "Luffy":
+//             mario.src = "_media/gifs-principais/luffy.gif";
+//             personagemSelecionado.src = "_media/gifs-startscreen/luffy_walk.gif";
+//             musica.src = "_media/sounds/luffy-rei.mp3";
+//             musica.removeAttribute('loop');
+//             mario.style.width = "115px";
+//             mario.style.marginLeft = "6px";
+//             mario.style.bottom = "0.3px";
+
+//             break;
+//         case "Link":
+//             mario.src = "_media/gifs-principais/link.gif";
+//             mario.style.bottom = "-13px";
+//             personagemSelecionado.src = "_media/gifs-startscreen/link_Dance.gif";
+//             musica.src = "_media/sounds/link-tema.mp3";
+//             mario.style.width = "135px";
+//             mario.style.marginLeft = "8px";
+//             musica.removeAttribute('loop');
+//             break;
+//         default:
+//             mario.style.transform = ""; // Remove inversão se trocar de personagem
+//             personagemSelecionado.style.transform = "";
+//             mario.src = "_media/gifs-principais/mario.gif";
+//             personagemSelecionado.src = "_media/gifs-startscreen/marioDancando.gif";
+//             break;
+//     }
+// }
+//KAUÃ
+
+// Remova ou comente a função antiga mudarPersonagem()
+
+document.addEventListener('DOMContentLoaded', () => {
+    const personagens = document.querySelectorAll('.character-grid img');
+    const marioPadrao = document.querySelector('.character-grid img[data-character="mario"]');
+
+    // Define Mario como selecionado por padrão ao carregar
+    if (marioPadrao) {
+        marioPadrao.classList.add('character-selected');
+        selecionarPersonagem('mario', false); // Seleciona sem fechar a tela ou dar alerta
+    }
+
+    personagens.forEach(personagem => {
+        personagem.addEventListener('click', (event) => {
+            // Remove a seleção de todos os outros
+            personagens.forEach(p => p.classList.remove('character-selected'));
+
+            // Adiciona a seleção ao personagem clicado
+            const selecionadoEl = event.currentTarget;
+            selecionadoEl.classList.add('character-selected');
+
+            const nomePersonagem = selecionadoEl.dataset.character;
+            selecionarPersonagem(nomePersonagem, true); // S
+        });
+    });
+});
+
+function selecionarPersonagem(selecao, interacaoUsuario) {
     // salva o perso atual
     personagemAtual = selecao;
+
+    // Reseta estilos
+    mario.style.transform = "";
+    mario.style.width = "";
+    mario.style.marginLeft = "";
+    mario.style.bottom = "";
 
     switch (selecao) {
         case "mario":
             mario.src = "_media/gifs-principais/mario.gif";
-            personagemSelecionado.src = "_media/gifs-startscreen/marioDancando.gif";
-            musica.src = "_media/sounds/its_mario.mp3";
-            musica.removeAttribute('loop');
-
+            if (interacaoUsuario) musica.src = "_media/sounds/its_mario.mp3";
             break;
         case "sonic":
-
             mario.src = "_media/gifs-principais/sonic.gif";
-            personagemSelecionado.src = "_media/gifs-startscreen/sonic_dance.gif";
             mario.style.bottom = "-4px";
-            musica.src = "_media/sounds/sonicSelection.mp3";
-            musica.removeAttribute('loop');
-
-
-            //Nahyron
-            // condicional pra quando segurar a seta pra baixo, ele virar uma bolinha (sonic)
-
-            document.addEventListener("keydown", (event) => {
-                switch (event.key) {
-                    case "ArrowDown":
-                        spin();
-                        break;
-                    default:
-                        break;
-                }
-            });
-
-            // condicional pra quando soltar a seta pra baixo, ele virar uma bolinha (sonic)
-
-            document.addEventListener("keyup", (event) => {
-                switch (event.key) {
-                    case "ArrowDown":
-                        normal();
-                        break;
-                    default:
-                        break;
-                }
-            });
-
-
-
-            break;
-
-        case "marioSecreto":
-            mario.src = "_media/gifs-principais/mario-walking.gif";
-            personagemSelecionado.src = "_media/gifs-principais/mario-walking.gif";
-            musica.src = "_media/sounds/mario.mp3";
-            musica.removeAttribute('loop');
-            break;
-        case "sonicSecreto":
-            mario.src = "_media/gifs-principais/super-sonic.gif";
-            personagemSelecionado.src = "_media/gifs-principais/super-sonic.gif";
-            musica.src = "_media/sounds/sonic-theme.mp3";
-            musica.removeAttribute('loop');
-            break;
-        case "marioKart":
-            mario.src = "_media/gifs-principais/super-mario-kart-mario.gif";
-            personagemSelecionado.src = "_media/gifs-principais/super-mario-kart-mario.gif";
-            musica.src = "_media/sounds/mario.mp3";
-            musica.removeAttribute('loop');
-            break;
-        case "shadowSecreto":
-            mario.src = "_media/gifs-principais/shadow-the-hedgehog.gif";
-            personagemSelecionado.src = "_media/gifs-principais/shadow-the-hedgehog.gif";
-            musica.src = "_media/sounds/sonic-theme.mp3";
-            musica.removeAttribute('loop');
-            // Inverte o gif para o lado direito
-            mario.style.transform = "scaleX(-1)";
-            personagemSelecionado.style.transform = "scaleX(-1)";
-            mario.style.bottom = "-15px";
+            if (interacaoUsuario) musica.src = "_media/sounds/sonicSelection.mp3";
             break;
         case "pikachu":
             mario.src = "_media/gifs-principais/Pikachu.gif";
-            personagemSelecionado.src = "_media/gifs-startscreen/pikachu_parado.gif";
-            musica.src = "_media/sounds/quePokemon.mp3";
-            musica.removeAttribute('loop');
+            if (interacaoUsuario) musica.src = "_media/sounds/quePokemon.mp3";
             mario.style.marginLeft = "5px";
             break;
         case "kirby":
             mario.src = "_media/gifs-principais/kirby.gif";
-            personagemSelecionado.src = "_media/gifs-startscreen/kirby-nintendo.gif";
-            musica.src = "_media/sounds/kirby_hi.mp3";
-            musica.removeAttribute('loop');
+            if (interacaoUsuario) musica.src = "_media/sounds/kirby_hi.mp3";
             mario.style.width = "110px";
-            // quando clicar na foto da kirby, ela vai rir
-            personagemSelecionado.addEventListener("click", (event) => {
-                musica.src = "_media/sounds/Kirby_laught.mp3";
-            })
             break;
-        case "SwordSkeleton":
-            mario.src = "_media/gifs-principais/skeleton.gif";
-            personagemSelecionado.src = "_media/gifs-startscreen/skeleton_Dancing.gif";
-            musica.src = "_media/sounds/esqueleto-start.mp3";
-            musica.removeAttribute('loop');
-            break;
-        case "Batman":
+        case "batman":
             mario.src = "_media/gifs-principais/batman.gif";
-            personagemSelecionado.src = "_media/gifs-startscreen/batman_Dance.gif";
-            musica.src = "_media/sounds/sou_batman.mp3";
+            if (interacaoUsuario) musica.src = "_media/sounds/sou_batman.mp3";
             mario.style.bottom = "-2px";
-            musica.removeAttribute('loop');
             break;
-        case "Luffy":
+        case "luffy":
             mario.src = "_media/gifs-principais/luffy.gif";
-            personagemSelecionado.src = "_media/gifs-startscreen/luffy_walk.gif";
-            musica.src = "_media/sounds/luffy-rei.mp3";
-            musica.removeAttribute('loop');
+            if (interacaoUsuario) musica.src = "_media/sounds/luffy-rei.mp3";
             mario.style.width = "115px";
             mario.style.marginLeft = "6px";
             mario.style.bottom = "0.3px";
-
             break;
-        case "Link":
+        case "link":
             mario.src = "_media/gifs-principais/link.gif";
             mario.style.bottom = "-13px";
-            personagemSelecionado.src = "_media/gifs-startscreen/link_Dance.gif";
-            musica.src = "_media/sounds/link-tema.mp3";
+            if (interacaoUsuario) musica.src = "_media/sounds/link-tema.mp3";
             mario.style.width = "135px";
             mario.style.marginLeft = "8px";
-            musica.removeAttribute('loop');
             break;
+        case "marioSecreto":
+            mario.src = "_media/gifs-principais/mario-walking.gif";
+            if (interacaoUsuario) musica.src = "_media/sounds/mario.mp3";
+            break;
+        case "sonicSecreto":
+            mario.src = "_media/gifs-principais/super-sonic.gif";
+            if (interacaoUsuario) musica.src = "_media/sounds/sonic-theme.mp3";
+            break;
+        case "marioKart":
+            mario.src = "_media/gifs-principais/super-mario-kart-mario.gif";
+            if (interacaoUsuario) musica.src = "_media/sounds/mario.mp3";
+            break;
+        case "shadowSecreto":
+            mario.src = "_media/gifs-principais/shadow-the-hedgehog.gif";
+            if (interacaoUsuario) musica.src = "_media/sounds/sonic-theme.mp3";
+            mario.style.transform = "scaleX(-1)";
+            mario.style.bottom = "-15px";
+            break;
+
+        case "wario":
+            mario.src = "_media/wario.gif";
+            mario.style.transform = "scaleX(-1)";
+            // Adicione um som para o wario se tiver
+            break;
+        case "roberto":
+            mario.src = "_imagens/image.png";
+            mario.style.transform = "scaleX(1)";
+            break;
+        case "matheus":
+            mario.src = "_imagens/matheus.png";
+            mario.style.transform = "scaleX(1)";
+            if (interacaoUsuario) musica.src = "_media/sounds/hinoPalmeiras.mp3";
+            break;
+
         default:
-            mario.style.transform = ""; // Remove inversão se trocar de personagem
-            personagemSelecionado.style.transform = "";
             mario.src = "_media/gifs-principais/mario.gif";
-            personagemSelecionado.src = "_media/gifs-startscreen/marioDancando.gif";
             break;
     }
-}
 
+    if (interacaoUsuario) {
+        musica.removeAttribute('loop');
+        musica.play();
+    }
+}
 
 // Matheus com adições e melhorias de: Parafal (Adicionou mais personagens) e João Pedro (fez o if dos bonecos mortos)
 //Função é executada quando o user clicar em "sim" na telaMorte, caso ele clique em "não" a página será recarregada
 //Some com a tela de morte, volta o cano
 function tiraVida() {
-    telaMorte.style.display = "none";
-    pipe.style.display = "flex";
-    mario.style.display = "flex";
-    coin.style.display = "flex";
-    infoBoard.style.display = "flex";
+    lifes--; // Reduz 1 vida
+    renderizarVidas(); // Redesenha os corações na tela
 
-
-    //Verifica o n° de vidas, reduz 1 no mesmo e some com o respectivo coração da tela
-    if (lifes >= 3) {
-        lifes--;
-        heart3.style.display = "none";
-    } else if (lifes == 2) {
-        lifes--;
-        heart2.style.display = "none";
-    } else if (lifes == 1) {
+    if (lifes > 0) {
+        // Se ainda há vidas, o jogo continua
+        telaMorte.style.display = "none";
+        pipe.style.display = "flex";
+        mario.style.display = "flex";
+        coin.style.display = "flex";
+        infoBoard.style.display = "flex";
+    } else {
         musica.src = '_media/sounds/marioDeath.mp3';
         musica.removeAttribute('loop'); //remove o loop do som morrendo
         lifes--;
@@ -412,6 +541,35 @@ function tiraVida() {
     }
 }
 
+
+function renderizarVidas() {
+    const lifesContainer = document.querySelector('.lifes');
+    lifesContainer.innerHTML = '';
+
+    for (let i = 0; i < lifes; i++) {
+        const heartImg = document.createElement('img');
+        heartImg.src = '_media/corazon-pixel.gif';
+        heartImg.classList.add('heart-icon'); // Usaremos uma classe genérica
+        lifesContainer.appendChild(heartImg);
+    }
+}
+
+function criarMoeda() {
+    const gameBoard = document.querySelector('.game-board');
+    const novaMoeda = document.createElement('img');
+    novaMoeda.src = '_imagens/coin.png';
+    novaMoeda.classList.add('coin');
+
+    const alturaAleatoria = Math.random() * 150 + 50; // Aparece entre 50px e 200px de altura
+    novaMoeda.style.bottom = `${alturaAleatoria}px`;
+
+    gameBoard.appendChild(novaMoeda);
+
+    setTimeout(() => {
+        novaMoeda.remove();
+    }, 5000); // 5 segundos é tempo suficiente para a moeda sair da tela (eu acho)
+}
+
 //Aqui é um monstro (NO GERAL) cada um fez uma parte ou mexeu em uma que já existia :D
 function iniciarGame() {
 
@@ -463,6 +621,13 @@ function iniciarGame() {
     mario.style.display = "flex";
     coin.style.display = "flex";
 
+    document.querySelector('.coin').style.display = 'none';
+
+    // Inicia o gerador de moedas para criar uma a cada 3 segundos
+    setInterval(criarMoeda, 3000);
+    //aq eu renderizo as vidas
+    renderizarVidas();
+
 
 
     //Matheus
@@ -481,33 +646,76 @@ function iniciarGame() {
 
     //Começou com Matheus, mas acabou que o Parafal e Nahyron mexeram bastante para melhorar, a principio a moeda tava bem zoada depois ficou muito boa
     //Validar "colisão" com a moeda, se arrelou + 500 pontos
-    setInterval(() => {
-        if (coin.style.display !== "none") {
-            const coinPosition = coin.offsetLeft;
-            const marioPosition = +window.getComputedStyle(mario).bottom.replace("px", "");
-            if (coinPosition <= 120 && coinPosition > 0 && marioPosition >= 120 && !coinCollected) {
-                pontos += 100;
-                //Parafal e Nahyron
-                coin.style.display = "none";
-                pontoTexto.style.visibility = 'visible';
-                pontoTexto.style.animation = 'texto-moeda 2.15s infinite linear';
-                moedaPega.play();
-                coinCollected = true;
-                setTimeout(() => {
-                    coin.style.display = "block";
-                    coinCollected = false;
-                    pontoTexto.style.visibility = 'hidden';
-                    pontoTexto.style.animation = 'none';
-                }, 2000); // 2 segundos para reaparecer
-            }
-        }
-    }, 100);
+    // setInterval(() => {
+    //     if (coin.style.display !== "none") {
+    //         const coinPosition = coin.offsetLeft;
+    //         const marioPosition = +window.getComputedStyle(mario).bottom.replace("px", "");
+    //         if (coinPosition <= 120 && coinPosition > 0 && marioPosition >= 120 && !coinCollected) {
+    //             pontos += 100;
+    //             //Parafal e Nahyron
+    //             coin.style.display = "none";
+    //             pontoTexto.style.visibility = 'visible';
+    //             pontoTexto.style.animation = 'texto-moeda 2.15s infinite linear';
+    //             moedaPega.play();
+    //             coinCollected = true;
+    //             setTimeout(() => {
+    //                 coin.style.display = "block";
+    //                 coinCollected = false;
+    //                 pontoTexto.style.visibility = 'hidden';
+    //                 pontoTexto.style.animation = 'none';
+    //             }, 2000); // 2 segundos para reaparecer
+    //         }
+    //     }
+    // }, 100);
+
+    //CODIGO ANTIGO DA MOEDA, DEPOIS DO TESTE EU APAGO
 
     //Essa parte no geral já tinha mas é outro monstro, todo mundo mexeu um pouco
     //Essa parte no geral já tinha mas é outro monstro, todo mundo mexeu um pouco
     const loop = setInterval(() => {
         const pipePosition = pipe.offsetLeft;
         const marioPosition = +window.getComputedStyle(mario).bottom.replace("px", "");
+        const marioPositionLeft = mario.offsetLeft; // Pega a posição esquerda do Mario
+
+
+        // =======================================================
+        //     NOVA LÓGICA DE COLISÃO COM MÚLTIPLAS MOEDAS 3000 ULTRA HD KAUÃ GAMEPLA
+        // // =======================================================
+        document.querySelectorAll('.coin').forEach((moeda) => {
+            if (moeda) { // Verifica se a moeda ainda existe
+                const moedaPositionLeft = moeda.offsetLeft;
+                const moedaPositionBottom = +window.getComputedStyle(moeda).bottom.replace('px', '');
+
+                // Lógica de colisão aprimorada
+                if (
+                    marioPositionLeft < moedaPositionLeft + moeda.width &&
+                    marioPositionLeft + mario.width > moedaPositionLeft &&
+                    marioPosition < moedaPositionBottom + moeda.height &&
+                    marioPosition + mario.height > moedaPositionBottom
+                ) {
+                    moeda.remove(); // Remove a moeda coletada
+                    pontos += 25;
+                    moedasColetadas++;
+                    coin.style.display = "none";
+                    pontoTexto.style.visibility = 'visible';
+                    pontoTexto.style.animation = 'texto-moeda 2.15s infinite linear';
+                    moedaPega.play();
+                    coinCollected = true;
+                    setTimeout(() => {
+                        coin.style.display = "block";
+                        coinCollected = false;
+                        pontoTexto.style.visibility = 'hidden';
+                        pontoTexto.style.animation = 'none';
+                    }, 2000); // 2 segundos para reaparecer
+
+                    // A cada 10 moedas, ganha uma vida
+                    if (moedasColetadas % 10 === 0 && moedasColetadas > 0) {
+                        lifes++;
+                        renderizarVidas(); // Atualiza a exibição de vidas
+                    }
+                }
+            }
+        });
 
         //Parafal
         // Se todas as condições forem verdadeiras, troca o gif para o luffyGear (ele está dentro do loop principal pois é onde o jogo vai rodando constantemente)
