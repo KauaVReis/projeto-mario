@@ -13,6 +13,8 @@ const estrelas = document.querySelector(".sky-stars");
 const goku = document.querySelector(".goku");
 const dragon = document.querySelector(".dragon");
 const dragonair = document.querySelector(".dragonair");
+let space = document.querySelector(".space");
+let cloud = document.querySelector(".clouds")
 
 
 const telaMorte = document.querySelector(".div-continuar");
@@ -143,6 +145,21 @@ function personagens() {
     selecao.style.display = "flex";
     telaIncio.style.visibility = "hidden";
     document.querySelector(".recarga").style.display = "flex";
+    musica.src = "_media/sounds/allstar.mp3";
+    cloud.style.display = "none";
+    space.style.display = "flex";
+    document.querySelector(".pareiOlho").style.display = "none";
+    musica.volume = 0.4;
+}
+
+function olhar() {
+    selecao.style.display = "none";
+    document.querySelector(".recarga").style.display = "none";
+    document.querySelector(".pareiOlho").style.display = "flex";
+    musica.src = "_media/sounds/aprecieFundo.mp3";
+    musica.volume = 0.4;
+    
+
 }
 
 // Miguel
@@ -161,6 +178,8 @@ function retornar() {
         selecao.style.display = "none";
         telaIncio.style.visibility = "visible";
         document.querySelector(".recarga").style.display = "none";
+        space.style.display = "none";
+        musica.src = "_media/sounds/mario.mp3";
     }
 
     else {
@@ -758,7 +777,7 @@ function iniciarGame() {
             dragonair.style.display = "none";
         }
         if (pontos >= 1000) {
-            document.querySelector(".clouds").style.animationDuration = "0.2s";
+            cloud.style.animationDuration = "0.2s";
             estrelas.style.animationDuration = "0.1s";
             lifes = 100000000000000;
             pipe.style.animationDuration = "0.1s";

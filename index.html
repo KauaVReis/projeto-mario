@@ -73,23 +73,26 @@
                 <img src="_media/gifs-startscreen/batman_Dance.gif" class="batman" data-character="batman">
                 <img src="_media/gifs-startscreen/luffy-inicio.gif" class="luffy" data-character="luffy">
                 <img src="_media/gifs-startscreen/sonic_dance.gif" class="sonic" data-character="sonic">
-
+                
                 <img src="_media/gifs-principais/mario-walking.gif" class="personagem-secreto"
-                    data-character="marioSecreto" id="marioSecreto-char">
+                data-character="marioSecreto" id="marioSecreto-char">
                 <img src="_media/gifs-principais/super-sonic.gif" class="personagem-secreto"
-                    data-character="sonicSecreto" id="sonicSecreto-char">
+                data-character="sonicSecreto" id="sonicSecreto-char">
                 <img src="_media/gifs-principais/super-mario-kart-mario.gif" class="personagem-secreto"
-                    data-character="marioKart" id="marioKart-char">
+                data-character="marioKart" id="marioKart-char">
                 <img src="_media/gifs-principais/shadow-the-hedgehog.gif" class="personagem-secreto"
-                    data-character="shadowSecreto" id="shadowSecreto-char" style="transform: scaleX(-1);">
-
+                data-character="shadowSecreto" id="shadowSecreto-char" style="transform: scaleX(-1);">
+                
                 <img src="_media/wario.gif" class="personagem-secreto" data-character="wario" id="wario-char"
-                    style="transform: scaleX(-1);">
+                style="transform: scaleX(-1);">
                 <img src="_imagens/image.png" class="personagem-secreto" data-character="roberto" id="roberto-char">
                 <img src="_imagens/matheus.png" class="personagem-secreto" data-character="matheus" id="matheus-char">
             </div>
+            <button class="olhar" onclick="olhar()">Olhar fundo</button>
         </div>
-
+        <button class="pareiOlho" onclick="personagens()">Voltar a selecionar personagens</button>
+        <img class="space" src="_media/gifs-principais/space.gif" alt="">
+        
         <div class="creditos-area">
             <h2 class="section-title">Créditos</h2>
             <div class="credits-grid">
@@ -99,7 +102,7 @@
                 <img src="_imagens/creditos/g2.jpg" width="20%">
             </div>
         </div>
-
+        
         <div class="btn-voltar">
             <button class="recarga" onclick="retornar()">Voltar para menu</button>
         </div>
@@ -108,6 +111,7 @@
     <audio id="musicaSelecao" loop></audio>
     <audio id="musicaJogo" loop></audio>
     <audio id="moeda" src="_media/sounds/pegar-moeda.mp3"></audio>
+    
 
 </body>
 <script src="_javascript/script.js" defer></script>
