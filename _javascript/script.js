@@ -152,6 +152,10 @@ function personagens() {
     musica.volume = 0.4;
 }
 
+// Nahyron fez
+// Função é executada quando o user clicar em "Olhar fundo" na tela de Start
+// Some com a tela de Start e exibe a tela de fundo da seleção de personagens"
+
 function olhar() {
     selecao.style.display = "none";
     document.querySelector(".recarga").style.display = "none";

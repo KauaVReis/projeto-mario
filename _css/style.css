@@ -518,6 +518,7 @@
     margin: 0 2px; 
 }
 
+/* (nahyron) fundo da tela de seleção de personagens, aqui ajusto ela pra fica no centro e do tamanho da pagina, dps vo arrumar usando outra medida de tamanho */
 .space{
     position: relative;
     top: 5%;
@@ -529,6 +530,8 @@
     display: none;
     
 }
+
+/* (nahyron) botão pra olhar o fundo da tela de personagens*/
 
 .olhar{
     z-index: 5;
@@ -560,6 +563,8 @@
     transform: scale(1.05);
 }
 
+
+/* (nahyron) botão pra parar de olhar o fundo da tela de personagens*/
 
 .pareiOlho{
     z-index: 5;
