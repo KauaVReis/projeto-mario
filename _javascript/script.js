@@ -4,9 +4,9 @@ const pipe = document.querySelector(".pipe");
 const cenario = document.querySelector(".chaos");
 
 //Corações
-const heart1 = document.querySelector(".heart");
-const heart2 = document.querySelector(".heart1");
-const heart3 = document.querySelector(".heart2");
+// const heart1 = document.querySelector(".heart");
+// const heart2 = document.querySelector(".heart1");
+// const heart3 = document.querySelector(".heart2");
 
 //Decorações, "telas" e informações exibidas na tela
 const estrelas = document.querySelector(".sky-stars");
@@ -36,6 +36,9 @@ const moedaPega = document.getElementById("moeda");
 //(Nahyron) coloquei essa variavel para controlar o personagem atual e eu poder usar depois :)
 let personagemAtual = "";
 
+
+let nomeJogador = "";
+
 let segundos = 0;
 let moedasColetadas = 0;
 
@@ -43,6 +46,7 @@ let moedasColetadas = 0;
 let pontos = 0;
 let lifes = 3;
 const coin = document.querySelector(".coin");
+
 
 //Sumindo com algumas coisas da tela antes do jogo começar
 pipe.style.display = "none";
@@ -55,6 +59,19 @@ pretin.style.display = "none";
 var toca1 = true;
 var toca2 = true;
 
+// FUNÇÃO SALVAR NOME DO PLAYER COLOQUEI AQUI PARA FICAR MAIS FÁCIL DE ACHAR E USAR DEPOIS
+
+function salvarNomeEContinuar() {
+    const inputNome = document.getElementById("playerNameInput");
+    if (inputNome.value.trim() === "") { // Verifica se o campo está vazio
+        alert("Por favor, digite um nome para continuar!");
+        return;
+    }
+    nomeJogador = inputNome.value;
+
+    document.querySelector('.name-screen').style.display = 'none';
+    document.querySelector('.game-board').style.display = 'block';
+}
 
 //Já tinha antes
 const jump = () => {
@@ -132,6 +149,33 @@ function checkUnlock(key) {
     }
 }
 
+//FUNÇÃO PARA SALVAR PONTUAÇÃO NO BANCO DE DADOS
+async function salvarPontuacao(pontosFinais) {
+    const dados = {
+        name: nomeJogador,
+        score: pontosFinais
+    };
+
+    try {
+        const response = await fetch('_php/salvar_pontuacao.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dados),
+        });
+
+        const resultado = await response.json();
+        console.log('Resposta do servidor:', resultado.message); // Exibe a resposta no console para debug
+
+        return resultado.message;
+
+    } catch (error) {
+        console.error('Erro ao enviar pontuação:', error);
+        return "Erro de conexão com o placar.";
+    }
+}
+
 // Listener de Teclado Unificado
 document.addEventListener('keydown', function (e) {
     checkUnlock(e.key);
@@ -162,7 +206,7 @@ function olhar() {
     document.querySelector(".pareiOlho").style.display = "flex";
     musica.src = "_media/sounds/aprecieFundo.mp3";
     musica.volume = 0.4;
-    
+
 
 }
 
@@ -481,7 +525,6 @@ function tiraVida() {
         musica.src = '_media/sounds/marioDeath.mp3';
         musica.removeAttribute('loop'); //remove o loop do som morrendo
         lifes--;
-        heart1.style.display = "none";
         //Aqui decidi tirar o infoBoard porque já acabou o game, não tem como voltar...
         infoBoard.style.display = "none";
         //Armazeno o conteudo html do elemento com id "pontos", e exibo na tela de morte com a tag <p>, coloquei um <br> e um botão também
@@ -489,6 +532,11 @@ function tiraVida() {
         telaMorte.innerHTML = "<p>Infelizmente você perdeu todas suas vidas</p><br><p>Pontos: " + totalPontos + "</p><button onclick='window.location.reload()'>Tentar Novamente</button>";
         //Exibo a telaMorte
         telaMorte.style.display = "flex";
+
+        salvarPontuacao(totalPontos).then(mensagemDoServidor => {
+            telaMorte.innerHTML = `<p>Fim de Jogo!</p><p>Pontos: ${totalPontos}</p><p style="font-size: 14px; margin-top: 10px;">${mensagemDoServidor}</p><button onclick='window.location.reload()'>Jogar Novamente</button>`;
+            telaMorte.style.display = "flex";
+        });
 
         //Isso aqui já tinha
         const pipePosition = pipe.offsetLeft;
@@ -596,6 +644,10 @@ function criarMoeda() {
 //Aqui é um monstro (NO GERAL) cada um fez uma parte ou mexeu em uma que já existia :D
 function iniciarGame() {
 
+    gameBoard.style.height = "95vh";
+    gameBoard.style.borderBottom = "15px solid rgb(35, 160, 35)";
+
+    document.body.style.backgroundColor = "rgb(150, 84, 8)";
     //Nahyron
     // coloca a música da gameplay
     if (personagemAtual == "sonic") {
@@ -841,3 +893,4 @@ function iniciarGame() {
     musica.play();
 
 }
+
